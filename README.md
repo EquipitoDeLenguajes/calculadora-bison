@@ -3,14 +3,14 @@
 
 The following instructions should be followed if you have a linux distribution with a bash terminal.
 
-You need to install bison (yacc) and flex (lex). In Debian distributions you can use:
+You need to install bison (yacc) and flex (lex). In Debian based distributions you can use:
 
 ```sh
-sudo apt-get install bison
+sudo apt install bison
 ```
 
 ```sh
-sudo apt-get install flex
+sudo apt install flex
 ```
 
 ### Option 1: Execute `run.sh` script
@@ -66,7 +66,7 @@ This will generate an `a.out` file.
 ./a.out
 ```
 
-This sohuld start the calculator.
+This should start the calculator.
 
 ## Team:
 
