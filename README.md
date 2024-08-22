@@ -7,6 +7,9 @@ You need to install bison (yacc) and flex (lex). In Debian distributions you can
 
 ```sh
 sudo apt-get install bison
+```
+
+```sh
 sudo apt-get install flex
 ```
 
