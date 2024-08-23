@@ -8,6 +8,7 @@ int yylex(void);
 %token NUMBER
 %token ADD SUB MUL DIV ABS
 %token EOL
+%token LPAREN RPAREN
 
 %%
 calclist:
@@ -25,6 +26,8 @@ term: NUMBER { $$ = $1; }
  | ADD NUMBER { $$ = +$2; }
  | SUB NUMBER { $$ = -$2; }
  | ABS term { $$ = $2 >= 0 ? $2 : -$2; }
+ | LPAREN exp RPAREN { $$ = $2; } 
+ | SUB LPAREN exp RPAREN {$$ = -$3; }
  ;
 %%
 
