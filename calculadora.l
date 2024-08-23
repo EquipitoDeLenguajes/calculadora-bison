@@ -9,6 +9,9 @@ SUB "-"
 MUL "*"
 DIV "/"
 ABS "|"
+LPAREN "("
+RPAREN ")"
+
 
 %%
 
@@ -18,6 +21,8 @@ ABS "|"
 {MUL}       { return MUL; }
 {DIV}       { return DIV; }
 {ABS}       { return ABS; }
+{LPAREN}    { return LPAREN; }
+{RPAREN}    { return RPAREN; }
 \n          { return EOL; }
 
 [ \t]       ;
