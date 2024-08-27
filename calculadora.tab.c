@@ -506,7 +506,7 @@ static const yytype_int8 yytranslate[] =
 static const yytype_int8 yyrline[] =
 {
        0,    14,    14,    15,    17,    18,    19,    21,    22,    23,
-      25,    26,    27,    28,    29,    30
+      32,    33,    34,    35,    36,    37
 };
 #endif
 
@@ -1115,48 +1115,55 @@ yyreduce:
 
   case 9: /* factor: factor DIV term  */
 #line 23 "calculadora.y"
-                   { yyval = yyvsp[-2] / yyvsp[0]; }
-#line 1120 "calculadora.tab.c"
+                   {
+        if (yyvsp[0] == 0){
+            printf("Error: Division por cero");
+            return 0;
+        }else{
+            yyval = yyvsp[-2] / yyvsp[0]; 
+        }
+    }
+#line 1127 "calculadora.tab.c"
     break;
 
   case 10: /* term: NUMBER  */
-#line 25 "calculadora.y"
+#line 32 "calculadora.y"
              { yyval = yyvsp[0]; }
-#line 1126 "calculadora.tab.c"
+#line 1133 "calculadora.tab.c"
     break;
 
   case 11: /* term: ADD NUMBER  */
-#line 26 "calculadora.y"
+#line 33 "calculadora.y"
               { yyval = +yyvsp[0]; }
-#line 1132 "calculadora.tab.c"
+#line 1139 "calculadora.tab.c"
     break;
 
   case 12: /* term: SUB NUMBER  */
-#line 27 "calculadora.y"
+#line 34 "calculadora.y"
               { yyval = -yyvsp[0]; }
-#line 1138 "calculadora.tab.c"
+#line 1145 "calculadora.tab.c"
     break;
 
   case 13: /* term: ABS term ABS  */
-#line 28 "calculadora.y"
+#line 35 "calculadora.y"
                { yyval = yyvsp[-1] >= 0 ? yyvsp[-1] : -yyvsp[-1]; }
-#line 1144 "calculadora.tab.c"
+#line 1151 "calculadora.tab.c"
     break;
 
   case 14: /* term: LPAREN exp RPAREN  */
-#line 29 "calculadora.y"
+#line 36 "calculadora.y"
                      { yyval = yyvsp[-1]; }
-#line 1150 "calculadora.tab.c"
+#line 1157 "calculadora.tab.c"
     break;
 
   case 15: /* term: SUB LPAREN exp RPAREN  */
-#line 30 "calculadora.y"
+#line 37 "calculadora.y"
                          {yyval = -yyvsp[-1]; }
-#line 1156 "calculadora.tab.c"
+#line 1163 "calculadora.tab.c"
     break;
 
 
-#line 1160 "calculadora.tab.c"
+#line 1167 "calculadora.tab.c"
 
       default: break;
     }
@@ -1349,7 +1356,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 32 "calculadora.y"
+#line 39 "calculadora.y"
 
 
 int main(int argc, char **argv)

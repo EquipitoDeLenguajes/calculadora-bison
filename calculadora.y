@@ -20,7 +20,14 @@ exp: factor { $$ = $1; }
 ;
 factor: term { $$ = $1; }
  | factor MUL term { $$ = $1 * $3; }
- | factor DIV term { $$ = $1 / $3; }
+ | factor DIV term {
+        if ($3 == 0){
+            printf("Error: Division por cero");
+            return 0;
+        }else{
+            $$ = $1 / $3; 
+        }
+    }
  ;
 term: NUMBER { $$ = $1; }
  | ADD NUMBER { $$ = +$2; }
