@@ -25,7 +25,7 @@ factor: term { $$ = $1; }
 term: NUMBER { $$ = $1; }
  | ADD NUMBER { $$ = +$2; }
  | SUB NUMBER { $$ = -$2; }
- | ABS term { $$ = $2 >= 0 ? $2 : -$2; }
+ | ABS term ABS{ $$ = $2 >= 0 ? $2 : -$2; }
  | LPAREN exp RPAREN { $$ = $2; } 
  | SUB LPAREN exp RPAREN {$$ = -$3; }
  ;
