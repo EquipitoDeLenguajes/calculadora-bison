@@ -70,11 +70,12 @@
 #line 1 "calculadora.y"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void yyerror(const char *s);
 int yylex(void);
 
-#line 78 "calculadora.tab.c"
+#line 79 "calculadora.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -505,8 +506,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    14,    14,    15,    17,    18,    19,    21,    22,    23,
-      32,    33,    34,    35,    36,    37
+       0,    21,    21,    22,    24,    25,    26,    28,    29,    30,
+      39,    40,    41,    42,    43,    44
 };
 #endif
 
@@ -1078,92 +1079,92 @@ yyreduce:
   switch (yyn)
     {
   case 3: /* calclist: calclist exp EOL  */
-#line 15 "calculadora.y"
-                    { printf("= %d\n", yyvsp[-1]); }
-#line 1084 "calculadora.tab.c"
+#line 22 "calculadora.y"
+                    { printf("= %f\n", (yyvsp[-1].val)); }
+#line 1085 "calculadora.tab.c"
     break;
 
   case 4: /* exp: factor  */
-#line 17 "calculadora.y"
-            { yyval = yyvsp[0]; }
-#line 1090 "calculadora.tab.c"
+#line 24 "calculadora.y"
+            { (yyval.val) = (yyvsp[0].val); }
+#line 1091 "calculadora.tab.c"
     break;
 
   case 5: /* exp: exp ADD factor  */
-#line 18 "calculadora.y"
-                  { yyval = yyvsp[-2] + yyvsp[0]; }
-#line 1096 "calculadora.tab.c"
+#line 25 "calculadora.y"
+                  { (yyval.val) = (yyvsp[-2].val) + (yyvsp[0].val); }
+#line 1097 "calculadora.tab.c"
     break;
 
   case 6: /* exp: exp SUB factor  */
-#line 19 "calculadora.y"
-                  { yyval = yyvsp[-2] - yyvsp[0]; }
-#line 1102 "calculadora.tab.c"
+#line 26 "calculadora.y"
+                  { (yyval.val) = (yyvsp[-2].val) - (yyvsp[0].val); }
+#line 1103 "calculadora.tab.c"
     break;
 
   case 7: /* factor: term  */
-#line 21 "calculadora.y"
-             { yyval = yyvsp[0]; }
-#line 1108 "calculadora.tab.c"
+#line 28 "calculadora.y"
+             { (yyval.val) = (yyvsp[0].val); }
+#line 1109 "calculadora.tab.c"
     break;
 
   case 8: /* factor: factor MUL term  */
-#line 22 "calculadora.y"
-                   { yyval = yyvsp[-2] * yyvsp[0]; }
-#line 1114 "calculadora.tab.c"
+#line 29 "calculadora.y"
+                   { (yyval.val) = (yyvsp[-2].val) * (yyvsp[0].val); }
+#line 1115 "calculadora.tab.c"
     break;
 
   case 9: /* factor: factor DIV term  */
-#line 23 "calculadora.y"
+#line 30 "calculadora.y"
                    {
-        if (yyvsp[0] == 0){
+        if ((yyvsp[0].val) == 0){
             printf("Error: Division por cero");
             return 0;
         }else{
-            yyval = yyvsp[-2] / yyvsp[0]; 
+            (yyval.val) = (yyvsp[-2].val) / (yyvsp[0].val); 
         }
     }
-#line 1127 "calculadora.tab.c"
+#line 1128 "calculadora.tab.c"
     break;
 
   case 10: /* term: NUMBER  */
-#line 32 "calculadora.y"
-             { yyval = yyvsp[0]; }
-#line 1133 "calculadora.tab.c"
+#line 39 "calculadora.y"
+             { (yyval.val) = (yyvsp[0].val); }
+#line 1134 "calculadora.tab.c"
     break;
 
   case 11: /* term: ADD NUMBER  */
-#line 33 "calculadora.y"
-              { yyval = +yyvsp[0]; }
-#line 1139 "calculadora.tab.c"
+#line 40 "calculadora.y"
+              { (yyval.val) = +(yyvsp[0].val); }
+#line 1140 "calculadora.tab.c"
     break;
 
   case 12: /* term: SUB NUMBER  */
-#line 34 "calculadora.y"
-              { yyval = -yyvsp[0]; }
-#line 1145 "calculadora.tab.c"
+#line 41 "calculadora.y"
+              { (yyval.val) = -(yyvsp[0].val); }
+#line 1146 "calculadora.tab.c"
     break;
 
   case 13: /* term: ABS term ABS  */
-#line 35 "calculadora.y"
-               { yyval = yyvsp[-1] >= 0 ? yyvsp[-1] : -yyvsp[-1]; }
-#line 1151 "calculadora.tab.c"
+#line 42 "calculadora.y"
+                { (yyval.val) = (yyvsp[-1].val) >= 0 ? (yyvsp[-1].val) : -(yyvsp[-1].val); }
+#line 1152 "calculadora.tab.c"
     break;
 
   case 14: /* term: LPAREN exp RPAREN  */
-#line 36 "calculadora.y"
-                     { yyval = yyvsp[-1]; }
-#line 1157 "calculadora.tab.c"
+#line 43 "calculadora.y"
+                     { (yyval.val) = (yyvsp[-1].val); }
+#line 1158 "calculadora.tab.c"
     break;
 
   case 15: /* term: SUB LPAREN exp RPAREN  */
-#line 37 "calculadora.y"
-                         {yyval = -yyvsp[-1]; }
-#line 1163 "calculadora.tab.c"
+#line 44 "calculadora.y"
+                         { (yyval.val) = -(yyvsp[-1].val); }
+#line 1164 "calculadora.tab.c"
     break;
 
 
-#line 1167 "calculadora.tab.c"
+#line 1168 "calculadora.tab.c"
 
       default: break;
     }
@@ -1356,7 +1357,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 39 "calculadora.y"
+#line 47 "calculadora.y"
 
 
 int main(int argc, char **argv)

@@ -2,8 +2,7 @@
 #include "calculadora.tab.h"
 %}
 
-
-NUMBER [0-9]+
+NUMBER [0-9]+(\.[0-9]+)?
 ADD "+"
 SUB "-"
 MUL "*"
@@ -12,10 +11,9 @@ ABS "|"
 LPAREN "("
 RPAREN ")"
 
-
 %%
 
-{NUMBER}    { yylval = atoi(yytext); return NUMBER; }
+{NUMBER}    { yylval.val = atof(yytext); return NUMBER; }
 {ADD}       { return ADD; }
 {SUB}       { return SUB; }
 {MUL}       { return MUL; }
@@ -29,3 +27,4 @@ RPAREN ")"
 .           { printf("Caracter no reconocido: %s\n", yytext); }
 
 %%
+
